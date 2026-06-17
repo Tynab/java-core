@@ -5,16 +5,19 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: In các thuộc tính hệ thống Java, hệ điều hành và thư mục người dùng hiện tại.
+ */
 public class BaiTapJava3 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 3");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final String[] mKey = {
             "java.version",
             "java.version.date",
@@ -44,7 +47,7 @@ public class BaiTapJava3 {
             "user.dir"
     };
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
         out.println(YELLOW);
         for (var item : mKey) {

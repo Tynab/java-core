@@ -10,27 +10,30 @@ import static java.util.Collections.min;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Cung cấp menu thao tác trên mảng số nguyên: thống kê, lọc, thêm và xóa phần tử.
+ */
 public class BaiTapJava13 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 13");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
         printAdv(GREEN, "Nhập vào số phần tử mảng: ", RESET);
-        var n = numLimit(1, MAX_VALUE); // pin out loop
+        var n = numLimit(1, MAX_VALUE); // Lưu giá trị dùng lại trong vòng lặp
         var list = new ArrayList<Integer>();
         for (var i = 0; i < n; i++) {
             printAdv(GREEN, format("Nhập phần tử thứ %d: ", i + 1), RESET);
             list.add(scanInt());
         }
-        // cap
+        // In lời nhắc hoặc menu
         out.print(CYAN);
         printlnAdv("1. Tính giá trị trung bình             ");
         printlnAdv("2. Tìm phần tử lớn nhất, nhỏ nhất      ");
@@ -41,7 +44,7 @@ public class BaiTapJava13 {
         printlnAdv("7. Xóa một phần tử theo vị trí         ");
         printAdv("Chọn 1 trong các phương án trên: ");
         out.print(RESET);
-        // output
+        // In kết quả
         switch (numLimit(1, 7)) {
             case 1: {
                 unitA(list);
@@ -73,38 +76,38 @@ public class BaiTapJava13 {
             }
         }
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Unit 1
+    // Chức năng 1
     private static void unitA(List<Integer> list) {
-        // sum
+        // Tính tổng
         var sum = 0;
         for (var item : list) {
             sum += item;
         }
-        // average
+        // In giá trị trung bình
         printlnAdv(YELLOW, format("Giá trị trung bình của mảng là: %s", writePerfectDub((double) sum / list.size())));
     }
 
-    // Unit 2
+    // Chức năng 2
     private static void unitB(List<Integer> list) {
         out.print(YELLOW);
         printlnAdv(format("Phần tử lớn nhất trong mảng là: %d", max(list)));
         printlnAdv(format("Phần tử nhỏ nhất trong mảng là: %d", min(list)));
     }
 
-    // Unit 3
+    // Chức năng 3
     private static void unitC(List<Integer> list) {
-        // scan
+        // Lọc phần tử theo điều kiện
         var resList = new ArrayList<Integer>();
         for (var item : list) {
             if (item < 0) {
                 resList.add(item);
             }
         }
-        // check back
+        // In thông báo khi không có kết quả
         out.print(YELLOW);
         if (resList.size() > 0) {
             printlnAdv(format("Phần tử âm lớn nhất trong mảng là: %d", max(resList)));
@@ -114,16 +117,16 @@ public class BaiTapJava13 {
         }
     }
 
-    // Unit 4
+    // Chức năng 4
     private static void unitD(List<Integer> list) {
-        // scan
+        // Lọc phần tử theo điều kiện
         var resList = new ArrayList<Integer>();
         for (var item : list) {
             if (item > 0) {
                 resList.add(item);
             }
         }
-        // check back
+        // In thông báo khi không có kết quả
         out.print(YELLOW);
         if (resList.size() > 0) {
             printlnAdv(format("Phần tử dương lớn nhất trong mảng là: %d", max(resList)));
@@ -133,16 +136,16 @@ public class BaiTapJava13 {
         }
     }
 
-    // Unit 5
+    // Chức năng 5
     private static void unitE(List<Integer> list) {
-        // transfer
+        // Loại bỏ phần tử trùng trước khi tách
         var shortList = new ArrayList<Integer>();
         for (var item : list) {
             if (!shortList.contains(item)) {
                 shortList.add(item);
             }
         }
-        // split
+        // Tách dữ liệu theo điều kiện
         var sEven = "";
         var sOdd = "";
         for (var item : shortList) {
@@ -153,13 +156,13 @@ public class BaiTapJava13 {
             }
         }
         out.print(YELLOW);
-        // even
+        // In nhóm chẵn
         if (sEven.length() > 2) {
             printlnAdv(format("Các phần tử chẵn trong mảng là: %s", sEven.substring(2)));
         } else {
             printlnAdv("Mảng không có phần tử chẵn.");
         }
-        // odd
+        // In nhóm lẻ
         if (sOdd.length() > 2) {
             printlnAdv(format("Các phần tử lẻ trong mảng là: %s", sOdd.substring(2)));
         } else {
@@ -167,16 +170,16 @@ public class BaiTapJava13 {
         }
     }
 
-    // Unit 6
+    // Chức năng 6
     private static void unitF(List<Integer> list) {
-        // input
+        // Nhập dữ liệu
         printAdv(GREEN, "Nhập số muốn thêm vào mảng: ", RESET);
         var x = scanInt();
         printAdv(GREEN, "Nhập vị trí phần tử mới cần chèn trong mảng: ", RESET);
         var max = list.size();
-        // process
+        // Xử lý dữ liệu
         list.add(numLimit(1, max + 1) - 1, x);
-        // output
+        // In kết quả
         var s = String.valueOf(list.get(0));
         for (var i = 1; i <= max; i++) {
             s += format(", %d", list.get(i));
@@ -184,22 +187,26 @@ public class BaiTapJava13 {
         printlnAdv(YELLOW, format("Mảng mới là: %s", s));
     }
 
-    // Unit 7
+    // Chức năng 7
     private static void unitG(List<Integer> list) {
-        // input
+        // Nhập dữ liệu
         printAdv(GREEN, "Nhập vị trí phần tử cần xóa trong mảng: ", RESET);
         var max = list.size();
-        // add
+        // Cập nhật danh sách
         list.remove(numLimit(1, max) - 1);
-        // output
-        var s = String.valueOf(list.get(0));
-        for (var i = 1; i < max - 1; i++) {
-            s += format(", %d", list.get(i));
+        // In kết quả
+        if (list.isEmpty()) {
+            printlnAdv(YELLOW, "Mảng mới không còn phần tử nào.");
+        } else {
+            var s = String.valueOf(list.get(0));
+            for (var i = 1; i < list.size(); i++) {
+                s += format(", %d", list.get(i));
+            }
+            printlnAdv(YELLOW, format("Mảng mới là: %s", s));
         }
-        printlnAdv(YELLOW, format("Mảng mới là: %s", s));
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

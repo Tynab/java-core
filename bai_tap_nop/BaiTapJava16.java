@@ -6,37 +6,45 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Kiểm tra năm nhuận theo quy tắc Gregorian cho các năm từ 1900 trở đi.
+ */
 public class BaiTapJava16 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 16");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final int YEAR_RESTART = 1900;
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
         printAdv(GREEN, "Nhập vào năm cần kiểm tra: ", RESET);
         var year = yearLimit(MAX_VALUE);
-        // output
+        // In kết quả
         out.print(YELLOW);
-        if (year == YEAR_RESTART || year % 4 != 0) {
-            printlnAdv(format("Năm %d là năm không nhuận.", year));
-        } else {
+        if (isLeapYear(year)) {
             printlnAdv(format("Năm %d là năm nhuận.", year));
+        } else {
+            printlnAdv(format("Năm %d là năm không nhuận.", year));
         }
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Year limit
+    // Kiểm tra năm nhuận
+    private static boolean isLeapYear(int year) {
+        return year % 400 == 0 || year % 4 == 0 && year % 100 != 0;
+    }
+
+    // Kiểm tra giới hạn năm
     private static int yearLimit(int max) {
         var n = scanInt();
         if (n < YEAR_RESTART) {
@@ -49,7 +57,7 @@ public class BaiTapJava16 {
         return n;
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

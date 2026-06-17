@@ -4,16 +4,19 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: In mẫu chữ JAVA bằng ký tự để minh họa thao tác xuất dữ liệu ra console.
+ */
 public class OutputExercise {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
-        printlnAdv("Output Exersice");
-        // content
+        printlnAdv("Output Exercise");
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
         out.println();
         out.print(YELLOW);

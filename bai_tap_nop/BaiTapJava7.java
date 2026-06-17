@@ -6,29 +6,32 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Nhập số nguyên dương và liệt kê toàn bộ ước số của số đó.
+ */
 public class BaiTapJava7 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 7");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
-        printAdv(GREEN, "Nhập vào số tự nhiên: ", RESET);
-        var n = numLimit(0, MAX_VALUE);
-        // output
+        printAdv(GREEN, "Nhập vào số nguyên dương: ", RESET);
+        var n = numLimit(1, MAX_VALUE);
+        // In kết quả
         printlnAdv(YELLOW, format("Các ước số của %d là: %s", n, divisorList(n)));
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Divisor list
+    // Liệt kê các ước số
     private static String divisorList(int n) {
         var s = "";
         for (var i = 1; i <= n; i++) {
@@ -39,7 +42,7 @@ public class BaiTapJava7 {
         return s.substring(2);
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

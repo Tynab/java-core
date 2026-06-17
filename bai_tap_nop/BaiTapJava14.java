@@ -8,21 +8,24 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Nhập mảng số nguyên và in mảng mới sau khi loại bỏ các giá trị trùng lặp.
+ */
 public class BaiTapJava14 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 14");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
         printAdv(GREEN, "Nhập vào số phần tử mảng: ", RESET);
-        var n = numLimit(1, MAX_VALUE); // pin out loop
+        var n = numLimit(1, MAX_VALUE); // Lưu giá trị dùng lại trong vòng lặp
         var list = new ArrayList<Integer>();
         var s = "";
         for (var i = 0; i < n; i++) {
@@ -33,14 +36,14 @@ public class BaiTapJava14 {
                 s += format(", %d", x);
             }
         }
-        // output
+        // In kết quả
         printlnAdv(YELLOW, format("Mảng kết quả là: %s", s.substring(2)));
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();
