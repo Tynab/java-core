@@ -9,24 +9,27 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Chuyển đổi qua lại giữa số thập phân và số nhị phân với dữ liệu nhập được kiểm tra.
+ */
 public class BaiTapJava2 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 2");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final Scanner mScan = new Scanner(in);
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // selection
+        // Hiển thị lựa chọn chuyển đổi
         out.println(CYAN);
         printlnAdv("1. Đổi từ cơ số 10 sang nhị phân ");
-        printlnAdv("2. Đổi từ nhị phân sang cơ sô 10");
+        printlnAdv("2. Đổi từ nhị phân sang cơ số 10");
         printAdv("Chọn 1 trong các phương án trên: ");
         out.print(RESET);
         if (numLimit(1, 2) == 1) {
@@ -35,13 +38,17 @@ public class BaiTapJava2 {
             binToDec();
         }
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Scan binary
+    // Nhập và kiểm tra số nhị phân
     private static String scanBin() {
         var s = mScan.nextLine();
+        if (isNullOrEmpty(s)) {
+            printAdv(RED, "Số nhị phân không được để trống, xin nhập lại: ", RESET);
+            return scanBin();
+        }
         for (var i = 0; i < s.length(); i++) {
             var c = s.charAt(i);
             if (c != '1' && c != '0') {
@@ -53,15 +60,15 @@ public class BaiTapJava2 {
         return s;
     }
 
-    // Decimal to binary
+    // Đổi số thập phân sang nhị phân
     private static void decToBin() {
-        // input
+        // Nhập dữ liệu
         printAdv(GREEN, "Nhập vào số nguyên dương: ", RESET);
-        // output
+        // In kết quả
         printlnAdv(YELLOW, format("Số nhị phân được đổi là: %s", binConvertor(numLimit(1, MAX_VALUE))));
     }
 
-    // Binary convertor
+    // Chuyển số nguyên sang chuỗi nhị phân
     private static String binConvertor(int n) {
         var s = "";
         while (n > 0) {
@@ -71,15 +78,15 @@ public class BaiTapJava2 {
         return new StringBuilder(s).reverse().toString();
     }
 
-    // Binary to decimal
+    // Đổi số nhị phân sang thập phân
     private static void binToDec() {
-        // input
+        // Nhập dữ liệu
         printAdv(GREEN, "Nhập vào số nhị phân: ", RESET);
-        // output
-        printlnAdv(YELLOW, format("Số nhị phân được đổi là: %s", decConvertor(scanBin())));
+        // In kết quả
+        printlnAdv(YELLOW, format("Số thập phân được đổi là: %s", decConvertor(scanBin())));
     }
 
-    // Decimal convertor
+    // Chuyển chuỗi nhị phân sang số thập phân
     private static int decConvertor(String s) {
         var sum = 0;
         for (var i = 0; i < s.length(); i++) {
@@ -91,7 +98,7 @@ public class BaiTapJava2 {
         return sum;
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

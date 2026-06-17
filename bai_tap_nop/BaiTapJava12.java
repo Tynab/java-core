@@ -5,32 +5,35 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Nhập kích thước từ 1 đến 9 và vẽ tam giác số tương ứng.
+ */
 public class BaiTapJava12 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 12");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final int MIN = 1;
     private static final int MAX = 9;
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
         printAdv(GREEN, format("Nhập vào số từ %d đến %d: ", MIN, MAX), RESET);
-        // output
+        // In kết quả
         drawStar(numLimit(MIN, MAX));
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Drawing star
+    // Vẽ tam giác số
     private static void drawStar(int n) {
         out.print(YELLOW);
         for (var i = 1; i <= n; i++) {
@@ -42,7 +45,7 @@ public class BaiTapJava12 {
         }
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

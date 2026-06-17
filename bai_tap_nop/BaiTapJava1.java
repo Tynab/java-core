@@ -4,22 +4,25 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Vẽ một hình ASCII bằng ký tự sao và dấu bằng theo kích thước cố định.
+ */
 public class BaiTapJava1 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 1");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final int R_MAX = 15;
     private static final int C_MAX = 46;
     private static final int R_CHANGE = 10;
     private static final int C_CHANGE = 12;
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
         out.println(YELLOW);
         for (var i = 1; i <= R_MAX; i++) {

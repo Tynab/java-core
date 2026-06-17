@@ -6,38 +6,37 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Nhập n và tính tổng các số nguyên từ 1 đến n bằng công thức số học.
+ */
 public class BaiTapJava10 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 10");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
         printAdv(GREEN, "Nhập vào số nguyên dương: ", RESET);
         var n = numLimit(1, MAX_VALUE);
-        // output
-        printlnAdv(YELLOW, format("Tổng các từ 1 đến %d là: %d", n, sumLim(n)));
+        // In kết quả
+        printlnAdv(YELLOW, format("Tổng các số từ 1 đến %d là: %d", n, sumLim(n)));
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Sum lim
-    private static int sumLim(int n) {
-        var sum = 0;
-        for (var i = 1; i <= n; i++) {
-            sum += i;
-        }
-        return sum;
+    // Tính tổng từ 1 đến n
+    private static long sumLim(int n) {
+        return (long) n * (n + 1) / 2;
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

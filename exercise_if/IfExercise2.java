@@ -6,34 +6,37 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Nhập một số tự nhiên và đếm số chữ số của số đó.
+ */
 public class IfExercise2 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
-        printlnAdv("If Exersice 2");
-        // content
+        printlnAdv("If Exercise 2");
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // input
+        // Nhập dữ liệu
         out.println();
         printAdv(GREEN, "Nhập vào số tự nhiên: ", RESET);
         var n = numLimit(0, MAX_VALUE);
-        // output
+        // In kết quả
         printlnAdv(YELLOW, format("Số %d có %d chữ số.", n, numCounter(n)));
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Number counter
+    // Đếm số chữ số
     private static int numCounter(int n) {
         return String.valueOf(n).length();
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

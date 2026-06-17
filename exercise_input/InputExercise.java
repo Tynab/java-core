@@ -9,45 +9,48 @@ import static java.util.TimeZone.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Nhập múi giờ GMT hợp lệ và in thời gian hiện tại theo múi giờ đó.
+ */
 public class InputExercise {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
-        printlnAdv("Input Exersice");
-        // content
+        printlnAdv("Input Exercise");
+        // Chạy nội dung chính
         run();
     }
 
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final double MIN_TIMEZONE = -11;
     private static final double MAX_TIMEZONE = 12;
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // cap
+        // In lời nhắc hoặc menu
         out.println();
         printAdv(GREEN, "Nhập vào múi giờ: ", RESET);
-        // format
+        // Định dạng dữ liệu
         var timeFormat = new SimpleDateFormat("HH:mm:ss");
         timeFormat.setTimeZone(getTimeZone(numToUTC(timezoneLimit(MIN_TIMEZONE, MAX_TIMEZONE))));
-        // output
+        // In kết quả
         printlnAdv(YELLOW, format("Hiện giờ là: %s", timeFormat.format(new Date())));
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Timezone limit
+    // Kiểm tra giới hạn múi giờ
     private static double timezoneLimit(double min, double max) {
         var n = scanDub();
         if (n < min || n > max) {
-            // min +-
+            // Chuẩn bị chuỗi giới hạn nhỏ nhất
             var iMin = valueOf((int) min);
             var sMin = valueOf(min);
-            // max +-
+            // Chuẩn bị chuỗi giới hạn lớn nhất
             var iMax = valueOf((int) max);
             var sMax = valueOf(max);
-            // main
+            // Ghép thông báo lỗi
             printAdv(RED,
                     format("Múi giờ từ GMT%s đến GMT%s, xin nhập lại: ",
                             min == (int) min ? min > 0 ? "+" + iMin : iMin : min > 0 ? "+" + sMin : sMin,
@@ -58,14 +61,19 @@ public class InputExercise {
         return n;
     }
 
-    // Convert number to UTC
+    // Chuyển số múi giờ sang mã GMT
     private static String numToUTC(double n) {
-        var hour = (int) n;
-        var minute = (int) ((n - hour) * 60);
-        return format("%s%d:%02d", n < 0 ? "GMT-" : "GMT+", hour, minute);
+        var absTimezone = Math.abs(n);
+        var hour = (int) absTimezone;
+        var minute = (int) Math.round((absTimezone - hour) * 60);
+        if (minute == 60) {
+            hour++;
+            minute = 0;
+        }
+        return format("GMT%s%02d:%02d", n < 0 ? "-" : "+", hour, minute);
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();

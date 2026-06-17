@@ -9,16 +9,19 @@ import static java.lang.String.valueOf;
 import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 
+/**
+ * Tóm tắt: Tập hợp hàm tiện ích dùng chung cho nhập liệu, in căn giữa, kiểm tra chuỗi và hỏi người dùng có tiếp tục hay không.
+ */
 public class YANService {
-    // Fields
+    // Hằng số và trạng thái dùng trong bài
     private static final Scanner mScan = new Scanner(in);
 
-    // Parse int advanced
+    // Chuyển ký tự số sang int
     public static int parseIntAdv(Character c) {
         return parseInt(valueOf(c));
     }
 
-    // Try parse int
+    // Kiểm tra dữ liệu có chuyển được sang int không
     public static boolean tryParseInt(Character c) {
         var isSuccess = true;
         try {
@@ -29,7 +32,7 @@ public class YANService {
         return isSuccess;
     }
 
-    // Try parse int
+    // Kiểm tra dữ liệu có chuyển được sang int không
     public static boolean tryParseInt(String s) {
         var isSuccess = true;
         try {
@@ -40,7 +43,7 @@ public class YANService {
         return isSuccess;
     }
 
-    // Scan int
+    // Nhập số nguyên an toàn
     public static int scanInt() {
         var n = 0;
         var s = mScan.nextLine();
@@ -53,7 +56,7 @@ public class YANService {
         return n;
     }
 
-    // Number limit int
+    // Nhập số nguyên trong giới hạn
     public static int numLimit(int min, int max) {
         var n = scanInt();
         if (n < min || n > max) {
@@ -63,22 +66,22 @@ public class YANService {
         return n;
     }
 
-    // Number limit int
+    // Nhập số nguyên trong giới hạn
     public static int numLimitEx(int min, int max) {
         var n = scanInt();
         if (n <= min || n >= max) {
             printAdv(RED, "Không xác định, xin nhập lại: ", RESET);
-            n = numLimit(min, max);
+            n = numLimitEx(min, max);
         }
         return n;
     }
 
-    // Parse double advanced
+    // Chuyển ký tự số sang double
     public static double parseDubAdv(Character c) {
         return parseDouble(valueOf(c));
     }
 
-    // Try parse double
+    // Kiểm tra dữ liệu có chuyển được sang double không
     public static boolean tryParseDub(Character c) {
         var isSuccess = true;
         try {
@@ -89,7 +92,7 @@ public class YANService {
         return isSuccess;
     }
 
-    // Try parse double
+    // Kiểm tra dữ liệu có chuyển được sang double không
     public static boolean tryParseDub(String s) {
         var isSuccess = true;
         try {
@@ -100,20 +103,20 @@ public class YANService {
         return isSuccess;
     }
 
-    // Scan double
+    // Nhập số thực an toàn
     public static double scanDub() {
         var n = 0d;
         var s = mScan.nextLine();
         if (tryParseDub(s)) {
             n = parseDouble(s);
         } else {
-            printAdv(RED, "Dữ liện bạn nhập không phải số, xin nhập lại: ", RESET);
+            printAdv(RED, "Dữ liệu bạn nhập không phải số, xin nhập lại: ", RESET);
             n = scanDub();
         }
         return n;
     }
 
-    // Number limit double
+    // Nhập số thực trong giới hạn
     public static double numLimit(double min, double max) {
         var n = scanDub();
         if (n < min || n > max) {
@@ -123,22 +126,22 @@ public class YANService {
         return n;
     }
 
-    // Number limit double
+    // Nhập số thực trong giới hạn
     public static double numLimitEx(double min, double max) {
         var n = scanDub();
         if (n <= min || n >= max) {
             printAdv(RED, "Không xác định, xin nhập lại: ", RESET);
-            n = numLimit(min, max);
+            n = numLimitEx(min, max);
         }
         return n;
     }
 
-    // Double to perfect number
+    // In số thực gọn khi phần thập phân bằng 0
     public static String writePerfectDub(double n) {
         return n == (int) n ? String.valueOf((int) n) : String.valueOf(n);
     }
 
-    // Print advanced
+    // In căn giữa
     public static void printAdv(String s) {
         for (var i = 1; i <= (WIDTH - s.length()) / 2; i++) {
             out.print(" ");
@@ -146,7 +149,7 @@ public class YANService {
         out.print(s);
     }
 
-    // Print advanced color
+    // In căn giữa có màu đầu dòng
     public static void printAdv(String color, String s) {
         for (var i = 1; i <= (WIDTH - s.length()) / 2; i++) {
             out.print(" ");
@@ -154,7 +157,7 @@ public class YANService {
         out.print(color + s);
     }
 
-    // Print advanced multi color
+    // In căn giữa kèm màu bắt đầu và kết thúc
     public static void printAdv(String colorStart, String s, String colorEnd) {
         for (var i = 1; i <= (WIDTH - s.length()) / 2; i++) {
             out.print(" ");
@@ -162,7 +165,7 @@ public class YANService {
         out.print(colorStart + s + colorEnd);
     }
 
-    // Print line advanced
+    // In dòng căn giữa
     public static void printlnAdv(String s) {
         for (var i = 1; i <= (WIDTH - s.length()) / 2; i++) {
             out.print(" ");
@@ -170,7 +173,7 @@ public class YANService {
         out.println(s);
     }
 
-    // Print line advanced color
+    // In dòng căn giữa có màu đầu dòng
     public static void printlnAdv(String color, String s) {
         for (var i = 1; i <= (WIDTH - s.length()) / 2; i++) {
             out.print(" ");
@@ -178,7 +181,7 @@ public class YANService {
         out.println(color + s);
     }
 
-    // Print line advanced multi color
+    // In dòng căn giữa kèm màu bắt đầu và kết thúc
     public static void printlnAdv(String colorStart, String s, String colorEnd) {
         for (var i = 1; i <= (WIDTH - s.length()) / 2; i++) {
             out.print(" ");
@@ -186,7 +189,7 @@ public class YANService {
         out.println(colorStart + s + colorEnd);
     }
 
-    // Check whitespace
+    // Kiểm tra chuỗi toàn khoảng trắng
     public static boolean isSpace(String s) {
         var isSuccess = true;
         for (var i = 0; i < s.length(); i++) {
@@ -198,17 +201,17 @@ public class YANService {
         return isSuccess;
     }
 
-    // Check null or empty
+    // Kiểm tra chuỗi null hoặc rỗng
     public static boolean isNullOrEmpty(String s) {
         return s == null || s.length() == 0;
     }
 
-    // Check null or whitespace
+    // Kiểm tra chuỗi null, rỗng hoặc chỉ có khoảng trắng
     public static boolean isNullOrWhitespace(String s) {
         return isNullOrEmpty(s) || isSpace(s);
     }
 
-    // Covert to title case
+    // Chuyển chuỗi sang dạng viết hoa chữ cái đầu
     public static String toTitleCase(String s) {
         var list = new ArrayList<Character>();
         var str = "";
@@ -231,22 +234,22 @@ public class YANService {
         return str;
     }
 
-    // Convert to lower case advanced
+    // Chuyển chuỗi sang chữ thường khi có nội dung
     public static String toLowerCaseAdv(String s) {
         return isNullOrWhitespace(s) ? s : s.toLowerCase();
     }
 
-    // Convert to upper case advanced
+    // Chuyển chuỗi sang chữ hoa khi có nội dung
     public static String toUpperCaseAdv(String s) {
         return isNullOrWhitespace(s) ? s : s.toUpperCase();
     }
 
-    // Convert to title case advanced
+    // Chuẩn hóa chuỗi rồi viết hoa chữ cái đầu
     public static String toTitleCaseAdv(String s) {
         return isNullOrWhitespace(s) ? s : toTitleCase(s.toLowerCase());
     }
 
-    // Credit
+    // Hỏi người dùng có muốn tiếp tục
     public static int credit() {
         printlnAdv(PURPLE, "Bạn có muốn tiếp tục?");
         printlnAdv("1. Có   ");

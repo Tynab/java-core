@@ -6,24 +6,27 @@ import static java.lang.System.*;
 import static yan_service.YANConstant.*;
 import static yan_service.YANService.*;
 
+/**
+ * Tóm tắt: Giải phương trình bậc nhất hoặc bậc hai theo lựa chọn của người dùng.
+ */
 public class BaiTapJava19 {
     public static void main(String[] args) {
-        // tit
+        // Tiêu đề chương trình
         out.println(BLUE_BOLD);
         printlnAdv("Bài Tập Java 19");
-        // content
+        // Chạy nội dung chính
         run();
     }
 
-    // Main
+    // Luồng xử lý chính
     private static void run() {
-        // cap
+        // In lời nhắc hoặc menu
         out.println(CYAN);
         printlnAdv("1. Giải phương trình bậc 1");
         printlnAdv("2. Giải phương trình bậc 2");
         printAdv("Chọn 1 trong các phương án trên: ");
         out.print(RESET);
-        // output
+        // In kết quả
         switch (numLimit(1, 2)) {
             case 1: {
                 unitA();
@@ -35,11 +38,11 @@ public class BaiTapJava19 {
             }
         }
         out.println();
-        // ctrl
+        // Hỏi người dùng có tiếp tục chạy lại không
         checkOut();
     }
 
-    // Check a
+    // Kiểm tra hệ số a khác 0
     private static double checkA() {
         var a = scanDub();
         if (a == 0) {
@@ -49,7 +52,7 @@ public class BaiTapJava19 {
         return a;
     }
 
-    // Unit 1
+    // Chức năng 1
     private static void unitA() {
         printAdv(GREEN, "a = ", RESET);
         var a = checkA();
@@ -58,7 +61,7 @@ public class BaiTapJava19 {
         printlnAdv(YELLOW, format("x = %s", writePerfectDub(-b / a)));
     }
 
-    // Unit 2
+    // Chức năng 2
     private static void unitB() {
         printAdv(GREEN, "a = ", RESET);
         var a = checkA();
@@ -78,7 +81,7 @@ public class BaiTapJava19 {
         }
     }
 
-    // Check out
+    // Kiểm tra nhu cầu chạy lại
     private static void checkOut() {
         if (credit() == 1) {
             run();
